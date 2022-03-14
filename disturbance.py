@@ -267,16 +267,16 @@ plt.ylabel('Difference Between Sensor 3 and 4 (nT)') #in caption it is proportio
 plt.xlabel('Number of FID')
 plt.show()
 
-plt.figure(5)
-plt.plot(t2,ad,label='Sensor 3')
-plt.plot(t2mag4,admag4,label='Sensor 4')
-plt.plot(t234,ad34,label='Difference Btw 3&4')
-plt.yscale("log")
-plt.xscale("log")
-plt.ylabel('Time (s)')
-plt.xlabel('Log(Frequency)')
-plt.legend()
-plt.show()
+# plt.figure(5)
+# plt.plot(t2,ad,label='Sensor 3')
+# plt.plot(t2mag4,admag4,label='Sensor 4')
+# plt.plot(t234,ad34,label='Difference Btw 3&4')
+# plt.yscale("log")
+# plt.xscale("log")
+# plt.ylabel('Time (s)')
+# plt.xlabel('Log(Frequency)')
+# plt.legend()
+# plt.show()
 
 
 
