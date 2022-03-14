@@ -274,7 +274,7 @@ plt.show()
 plt.figure(4)
 plt.plot(diff34)
 plt.legend()
-plt.ylabel('Field (nT)')
+plt.ylabel('Difference Between Sensor 3 and 4 (nT)') #in caption it is proportional to field
 plt.xlabel('Number of FID')
 plt.show()
 
