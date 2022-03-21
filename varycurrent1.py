@@ -1,21 +1,23 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Wed Mar  2 14:58:15 2022
+Created on Mon Mar 21 16:01:20 2022
 
 @author: kierapond
 """
 
+
 import pandas as pd
 import numpy as np
 import scipy.optimize
+from scipy.optimize import curve_fit
 import matplotlib.pyplot as plt
 import scipy.signal as sig
 import allantools as a
 
 ################# bring in data ###################
 
-df = pd.read_csv('/Users/kierapond/Documents/GitHub/multi-mag-thesis/trial1.csv',skiprows=range(0,17),low_memory=False)
+df = pd.read_csv('/Users/kierapond/Documents/GitHub/multi-mag-thesis/vary1.csv',skiprows=range(0,17),low_memory=False)
 
 #print(df)
 
@@ -43,16 +45,6 @@ timecolumn = ['TIME']
 
 time = df[timecolumn].to_numpy()
 
-#print(time)
-
-# plt.plot(time,mag4)
-# plt.plot(time,mag3)
-# plt.xlim(0, 100000)
-# plt.show()
-
-# plt.plot(trig)
-# plt.xlim(0, 100000)
-# plt.show()
 
 ################# find data #########################
 
@@ -67,8 +59,6 @@ pumpdata = trig
     
 
 # pump is trig and probe is mag signal 
-
-
 
 def find_ind(pumpdata):
     
@@ -106,7 +96,7 @@ def find_ind(pumpdata):
     
     if len(newstarts) != len(newends):
         if newstarts[0] < newends[0]:
-            newstarts = np.delete(newstarts, len(newstarts))
+            newstarts = np.delete(newstarts, len(newstarts)-1)
         else: 
             newends = np.delete(newends, len(newends))
     elif newends[0] < newstarts[0]:
@@ -209,13 +199,13 @@ for i in range(0,len(mag4[starts])):
     timemag4 = time[starts[i]:ends[i]] 
     fittimemag4 = timemag4 - min(timemag4)
     ampguessmag4 = abs(max(fitdatamag4) - min(fitdatamag4))/2
-    tconstguessmag4 = 50
+    tconstguessmag4 = 100
     wguessmag4 = 2*np.pi*7000
     phaseguessmag4 = np.pi/4
     offsetguessmag4 = np.mean(fitdatamag4)
     guessmag4 = [ampguessmag4,tconstguessmag4,wguessmag4,phaseguessmag4,offsetguessmag4]
-    boundsmag4 = [[0,0,0,-2*np.pi,-ampguessmag4], 
-             [10,200,2*wguessmag4,2*np.pi,ampguessmag4]]
+    boundsmag4 = [[0,0,0,-2*np.pi,-2*ampguessmag4], 
+             [100,2000,2*wguessmag4,2*np.pi,2*ampguessmag4]]
     poptmag4, pcovmag4 = scipy.optimize.curve_fit(fitfun, fittimemag4[:,0], fitdatamag4, 
             p0 = guessmag4, bounds = boundsmag4, maxfev = 50000, ftol = 1e-15, 
             gtol = 1e-15, xtol = 1e-15)
@@ -279,16 +269,16 @@ plt.ylabel('Difference Between Sensor 3 and 4 (nT)') #in caption it is proportio
 plt.xlabel('Number of FID')
 plt.show()
 
-plt.figure(5)
-plt.plot(t2,ad,label='Sensor 3')
-plt.plot(t2mag4,admag4,label='Sensor 4')
-plt.plot(t234,ad34,label='Difference Btw 3&4')
-plt.yscale("log")
-plt.xscale("log")
-plt.ylabel('Time (s)')
-plt.xlabel('Log(Frequency)')
-plt.legend()
-plt.show()
+# plt.figure(5)
+# plt.plot(t2,ad,label='Sensor 3')
+# plt.plot(t2mag4,admag4,label='Sensor 4')
+# plt.plot(t234,ad34,label='Difference Btw 3&4')
+# plt.yscale("log")
+# plt.xscale("log")
+# plt.ylabel('Time (s)')
+# plt.xlabel('Log(Frequency)')
+# plt.legend()
+# plt.show()
 
 
 

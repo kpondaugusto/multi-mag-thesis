@@ -241,13 +241,15 @@ plt.plot(fittime,fitdata)
 plt.plot(fittime,fitfun(fittime,*params[i,:]))
 # plt.plot(fittime,fitfun(fittime,0.05,10,2*np.pi*7000,0,0))
 plt.xlabel('Time (s)')
-plt.ylabel('')
+plt.ylabel('Signal Amplitude (V)')
 plt.show()
 
 plt.figure(3)
 plt.plot(fittimemag4,fitdatamag4)
 plt.plot(fittimemag4,fitfun(fittimemag4,*paramsmag4[i,:]))
 # plt.plot(fittime,fitfun(fittime,0.05,10,2*np.pi*7000,0,0))
+plt.xlabel('Time (s)')
+plt.ylabel('Signal Amplitude (V)')
 plt.show()
 
 
@@ -262,7 +264,6 @@ plt.show()
 
 plt.figure(4)
 plt.plot(diff34)
-plt.legend()
 plt.ylabel('Difference Between Sensor 3 and 4 (nT)') #in caption it is proportional to field
 plt.xlabel('Number of FID')
 plt.show()
