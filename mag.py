@@ -244,10 +244,14 @@ t = np.logspace(-1, 3)
 
 (t234,ad34,ade34,adn34)= a.oadev(diff34,rate=10,data_type='freq',taus=t)
 
+#print(t2,t2mag4,t234)
+
 
 ################ show data #########################
 
 
+
+plt.figure(1)
 plt.plot(fittime,fitdata)
 plt.plot(fittime,fitfun(fittime,*params[i,:]))
 # plt.plot(fittime,fitfun(fittime,0.05,10,2*np.pi*7000,0,0))
@@ -255,7 +259,13 @@ plt.xlabel('Time (s)')
 plt.ylabel('Signal Amplitude (V)')
 plt.show()
 
+
 plt.figure(3)
+plt.plot(params[:,0])
+# plt.plot(fittime,fitfun(fittime,0.05,10,2*np.pi*7000,0,0))
+plt.show()
+
+plt.figure(4)
 plt.plot(fittimemag4,fitdatamag4)
 plt.plot(fittimemag4,fitfun(fittimemag4,*paramsmag4[i,:]))
 # plt.plot(fittime,fitfun(fittime,0.05,10,2*np.pi*7000,0,0))
@@ -264,7 +274,7 @@ plt.ylabel('Signal Amplitude (V)')
 plt.show()
 
 
-plt.figure(2)
+plt.figure(5)
 plt.plot(params[:,2]/(2*np.pi*7.1096),label='Sensor 3')
 plt.plot(paramsmag4[:,2]/(2*np.pi*7.1096), label='Sensor 4')
 plt.legend()
@@ -272,24 +282,43 @@ plt.ylabel('Field (nT)')
 plt.xlabel('Number of FID')
 plt.show()
 
+# print(np.std(params[:,2]/(2*np.pi*7.1096)))
 
-plt.figure(4)
+# print(np.std(paramsmag4[:,2]/(2*np.pi*7.1096)))
+
+plt.figure(6)
 plt.plot(diff34)
 plt.ylabel('Difference Between Sensor 3 and 4 (nT)') #in caption it is proportional to field
 plt.xlabel('Number of FID')
 plt.show()
 
-plt.figure(5)
+# print(np.std(diff34))
+
+
+plt.figure(7)
 plt.plot(t2,ad,label='Sensor 3')
 plt.plot(t2mag4,admag4,label='Sensor 4')
 plt.plot(t234,ad34,label='Difference Btw 3&4')
 plt.yscale("log")
 plt.xscale("log")
-plt.ylabel('Time (s)')
-plt.xlabel('Log(Frequency)')
+plt.ylabel('Field (nT)')
+plt.xlabel('Integration Time (s)')
 plt.legend()
 plt.show()
 
+
+
+
+print(np.average(params[:,0]))
+print(np.std(params[:,0]))
+
+
+print(np.average(paramsmag4[:,0]))
+print(np.std(paramsmag4[:,0]))
+
+
+print(np.average(diff34))
+print(np.std(diff34))
 
 
 

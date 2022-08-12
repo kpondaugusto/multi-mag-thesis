@@ -268,6 +268,13 @@ plt.ylabel('Difference Between Sensor 3 and 4 (nT)') #in caption it is proportio
 plt.xlabel('Number of FID')
 plt.show()
 
+# print(np.std(params[:,2]/(2*np.pi*7.1096)))
+
+# print(np.std(paramsmag4[:,2]/(2*np.pi*7.1096)))
+
+# print(np.std(diff34))
+
+
 # plt.figure(5)
 # plt.plot(t2,ad,label='Sensor 3')
 # plt.plot(t2mag4,admag4,label='Sensor 4')
@@ -282,4 +289,15 @@ plt.show()
 
 
 
+
+print(np.average(params[:,2]))
+print(np.std(params[:,2]))
+
+
+print(np.average(paramsmag4[:,2]))
+print(np.std(paramsmag4[:,2]))
+
+
+print(np.average(diff34))
+print(np.std(diff34))
 

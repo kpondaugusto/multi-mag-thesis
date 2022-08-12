@@ -263,11 +263,20 @@ plt.xlabel('Number of FID')
 plt.show()
 
 
+d = diff34
+
 plt.figure(4)
-plt.plot(diff34)
+plt.plot(d[1:-1])
 plt.ylabel('Difference Between Sensor 3 and 4 (nT)') #in caption it is proportional to field
 plt.xlabel('Number of FID')
 plt.show()
+
+# print(np.std(params[:,2]/(2*np.pi*7.1096)))
+
+# print(np.std(paramsmag4[:,2]/(2*np.pi*7.1096)))
+
+# print(np.std(diff34))
+
 
 # plt.figure(5)
 # plt.plot(t2,ad,label='Sensor 3')
@@ -280,6 +289,17 @@ plt.show()
 # plt.legend()
 # plt.show()
 
+
+print(np.average(params[:,2]))
+print(np.std(params[:,2]))
+
+
+print(np.average(paramsmag4[:,2]))
+print(np.std(paramsmag4[:,2]))
+
+
+print(np.average(diff34))
+print(np.std(diff34))
 
 
 
